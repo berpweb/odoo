@@ -19,7 +19,7 @@
             <field name="inherit_id" ref="analytic.view_account_analytic_line_filter"/>
             <field name="arch" type="xml">
                  <field name="account_id" position="replace">
-                     <field name="account_id" string="Analytic account/project"/>
+                     <field name="account_id" string="Project"/>
                  </field>
                  <field name="account_id" position="after">
                     <field name="task_id"/>
@@ -32,7 +32,7 @@
             <field name="inherit_id" ref="analytic.view_account_analytic_line_form"/>
             <field name="arch" type="xml">
                 <field name="account_id"  position="replace">
-                   <field name="account_id" string="Analytic Account/Project"/>
+                   <field name="account_id" string="Project"/>
                 </field>
             </field>
         </record>
@@ -42,7 +42,7 @@
             <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
             <field name="arch" type="xml">
                 <field name="account_id"  position="attributes">
-                    <attribute name="string">Analytic account/project</attribute>
+                    <attribute name="string">Project</attribute>
                 </field>
                 <field name="account_id" position="after">
                     <field name="task_id" domain="[('project_id.analytic_account_id', '=' , account_id)]"/>

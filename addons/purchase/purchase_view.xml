@@ -227,7 +227,7 @@
                                         <notebook>
                                         <page string="Notes">
                                             <field name="name"/>
-                                        </page><page string="Invoices and Incoming Shipments">
+                                        </page><page string="Invoices and Incoming Shipments" invisible="1">
                                             <field name="invoice_lines"/>
                                             <field name="move_ids"/>
                                         </page>
@@ -246,7 +246,7 @@
                             <field name="notes" class="oe_inline" placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
                             <div class="oe_clear"/>
                         </page>
-                        <page string="Deliveries &amp; Invoices">
+                        <page string="Deliveries &amp; Invoices" invisible="1">
                             <group>
                                 <group>
                                     <field name="date_planned"/>

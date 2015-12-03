@@ -3,12 +3,12 @@
     <data>
 
         <record id="view_wizard_valuation_history" model="ir.ui.view">
-            <field name="name">Inventory at Date</field>
+            <field name="name">Stock at Date</field>
             <field name="model">wizard.valuation.history</field>
             <field name="arch" type="xml">
                 <form string="Choose your date">
                     <p class="oe_gray" attrs="{'invisible': [('choose_date', '=', False)]}">
-                        Choose a date in the past to get the inventory at that date.
+                        Choose a date in the past to get the stock at that date.
                     </p>
                     <p class="oe_gray" attrs="{'invisible': [('choose_date', '=', True)]}">
                         Retrieve the curent stock valuation.
@@ -18,14 +18,14 @@
                         <field name="date" attrs="{'invisible': [('choose_date', '=', False)]}"/>
                     </group>
                     <footer>
-                        <button name="open_table" string="Retrieve the Inventory Value" type="object" class="btn-primary"/>
+                        <button name="open_table" string="Retrieve the Stock Value" type="object" class="btn-primary"/>
                         <button string="Cancel" class="btn-default" special="cancel" />
                     </footer>
                 </form>
             </field>
         </record>
         <record id="action_wizard_stock_valuation_history" model="ir.actions.act_window">
-            <field name="name">Inventory at Date</field>
+            <field name="name">Stock at Date</field>
             <field name="res_model">wizard.valuation.history</field>
             <field name="view_type">form</field>
             <field name="view_mode">form</field>
