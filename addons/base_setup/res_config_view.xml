@@ -15,7 +15,7 @@
                         <label string="You will find more options in your company details: address for the header and footer, overdue payments texts, etc."/>
                         <button type="object" name="open_company" string="Configure your company data" icon="fa-cogs" class="oe_inline oe_link"/>
                     </div>
-                    <group>
+                    <group invisible="1">
                         <label for="id" string="Email" name="email_label"/>
                         <div name="email">
                             <div name="email.outgoing_server">
@@ -25,7 +25,7 @@
                             </div>
                         </div>
                     </group>
-                    <group groups="base.group_no_one">
+                    <group groups="base.group_no_one" invisible="1">
                         <label for="id" string="Portal access"/>
                         <div>
                             <div>
@@ -41,22 +41,22 @@
                             </div>
                         </div>
                     </group>
-                    <group name="authentication">
+                    <group name="authentication" invisible="1">
                         <label for="id" string="Authentication"/>
                         <div>
                             <field name="module_auth_oauth" class="oe_inline"/>
                             <label for="module_auth_oauth"/>
                         </div>
                     </group>
-                    <group>
+                    <group invisible="1">
                         <label for="id" string="Import / Export"/>
                         <div>
                             <field name="module_base_import" class="oe_inline"/>
                             <label for="module_base_import"/>
                         </div>
                     </group>
-                    <group>
-                        <label for="id" string="Multi Company"/>
+                    <group invisible="1">
+                        <label for="id" string="Multi Company" />
                         <div name="group_light_multi_company">
                             <field name="group_light_multi_company" class="oe_inline"/>
                             <label for="group_light_multi_company"/>
@@ -74,7 +74,7 @@
                     <group string="Shared ressources" name="company_share_ressources" attrs="{'invisible': [('group_light_multi_company','=',False)]}">
                         <field name="company_share_partner" class="oe_inline" />
                     </group>
-                    <group string="Google Integration" name="google">
+                    <group string="Google Integration" name="google" invisible="1">
                         <label for="id" string="Google Drive"/>
                         <div name="google_drive">
                             <div name="module_google_drive">
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </group>
-                    <group name="google_analytics">
+                    <group name="google_analytics" invisible="1">
                         <label for="id" string="Google Calendar"/>
                         <div name="google_calendar">
                             <div name="module_google_calendar">

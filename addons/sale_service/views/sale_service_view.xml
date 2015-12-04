@@ -41,7 +41,7 @@
             <field name="inherit_id" ref="project.view_task_form2"/>
             <field name="arch" type="xml">
                 <field name="company_id" position="before">
-                    <field name="sale_line_id" string="Order Line" groups="base.group_no_one"/>
+                    <field name="sale_line_id" string="Order Line" groups="base.group_no_one" invisible="1"/>
                 </field>
             </field>
         </record>

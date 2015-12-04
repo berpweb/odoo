@@ -203,11 +203,11 @@
                                         <field name="tz" widget="timezone_mismatch" options="{'tz_offset_field': 'tz_offset'}" />
                                         <field name="tz_offset" invisible="1"/>
                                     </group>
-                                    <group string="Menus Customization" groups="base.group_no_one">
+                                    <group string="Menus Customization" groups="base.group_no_one" invisible="1">
                                         <field name="action_id"/>
                                     </group>
                                 </group>
-                                <group string="Messaging and Social" name="messaging">
+                                <group string="Messaging and Social" name="messaging" invisible="1">
                                     <field name="signature"/>
                                 </group>
                             </page>

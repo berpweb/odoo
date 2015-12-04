@@ -290,7 +290,7 @@
                                     <field name="sequence" groups="base.group_no_one"/>
                                     <field name="partner_id"/>
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                                    <field name="displayed_image_id" groups="base.group_no_one"/>
+                                    <field name="displayed_image_id" groups="base.group_no_one" invisible="1"/>
                                 </group>
                                 <group col="2">
                                     <field name="date_assign" groups="base.group_no_one"/>
