@@ -236,7 +236,7 @@ class res_partner(osv.Model, format_address):
         'street': fields.char('Street'),
         'street2': fields.char('Street2'),
         'zip': fields.char('Zip', size=24, change_default=True),
-        'city': fields.char('City'),
+        'city': fields.char('Area'),
         'state_id': fields.many2one("res.country.state", 'State', ondelete='restrict'),
         'country_id': fields.many2one('res.country', 'Country', ondelete='restrict'),
         'email': fields.char('Email'),
@@ -384,7 +384,7 @@ class res_partner(osv.Model, format_address):
     def onchange_state(self, state_id):
         if state_id:
             state = self.env['res.country.state'].browse(state_id)
-            return {'value': {'country_id': state.country_id.id}}
+            return {'value': {'country_id': state.country_id.id, 'zip': state.code}}
         return {'value': {}}
 
     @api.multi
