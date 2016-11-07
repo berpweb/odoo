@@ -30,14 +30,14 @@
             <field name="target">new</field>
         </record>
 
-        <record model="ir.values" id="hr_attendance_error_values">
+        <!-- <record model="ir.values" id="hr_attendance_error_values">
             <field name="model_id" ref="hr.model_hr_employee" />
             <field name="name">Attendance Error Report</field>
             <field name="key2">client_print_multi</field>
             <field name="value" eval="'ir.actions.act_window,' + str(ref('action_hr_attendance_error'))" />
             <field name="key">action</field>
             <field name="model">hr.employee</field>
-        </record>
+        </record>-->
 
     </data>
 </openerp>
