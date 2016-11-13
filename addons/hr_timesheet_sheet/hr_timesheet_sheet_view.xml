@@ -57,7 +57,7 @@
             <field name="name">hr.timesheet.sheet.tree</field>
             <field name="model">hr_timesheet_sheet.sheet</field>
             <field name="arch" type="xml">
-                <tree decoration-info="state == 'draft'" decoration-muted="state == 'done'" decoration-bf="message_needaction == True" string="Timesheets">
+                <tree string="Timesheets">
                     <field name="employee_id"/>
                     <field name="date_from"/>
                     <field name="date_to"/>
@@ -188,10 +188,6 @@
                     <filter string="Unread Messages" name="message_needaction" domain="[('message_needaction','=',True)]"/>
                     <field name="employee_id"/>
                     <field name="department_id"/>
-                    <group expand="0" string="Group By">
-                        <filter string="Employees" domain="[]" context="{'group_by':'employee_id'}"/>
-                        <filter string="Department" domain="[]" context="{'group_by':'department_id'}"/>
-                    </group>
                 </search>
             </field>
         </record>

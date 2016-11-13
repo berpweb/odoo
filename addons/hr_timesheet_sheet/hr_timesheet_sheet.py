@@ -213,7 +213,7 @@ class hr_timesheet_sheet(osv.osv):
 
 
     _constraints = [
-        (_sheet_date, 'You cannot have 2 timesheets that overlap!\nPlease use the menu \'My Current Timesheet\' to avoid this problem.', ['date_from','date_to']),
+        (_sheet_date, 'You cannot have 2 Attendance Slips that overlap!', ['date_from','date_to']),
     ]
 
     def action_set_to_draft(self, cr, uid, ids, *args):
