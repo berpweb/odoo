@@ -491,7 +491,7 @@
                         </h2>
                 </td>
                 <td colspan="2">
-                        <div class="oe_view_manager_view_search"/>
+                        <div class="oe_view_manager_view_search" style="display:none;"/>
                 </td>
             </tr>
             <tr class="oe_header_row">
