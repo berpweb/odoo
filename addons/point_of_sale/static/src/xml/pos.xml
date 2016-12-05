@@ -6,7 +6,7 @@
     <t t-name="PosWidget">
         <div class="pos">
             <div class="pos-topheader">
-                <div class="pos-branding">
+                <div class="pos-branding" style="display:none;">
                     <img class="pos-logo" src="/point_of_sale/static/src/img/logo.png" />
                     <span class="placeholder-UsernameWidget"></span>
                 </div>

@@ -784,13 +784,13 @@
             id="menu_pos_config_pos"
             groups="group_pos_manager"/>
 
-        <act_window
+        <!-- <act_window
             id="act_pos_session_orders"
             name="Orders"
             src_model="pos.session"
             res_model="pos.order"
             context="{'search_default_session_id': active_id, 'default_session_id' : active_id }" />
-
+ -->
 
 
         <record model="ir.ui.view" id="view_pos_session_form">
