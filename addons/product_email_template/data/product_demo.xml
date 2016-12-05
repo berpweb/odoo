@@ -540,7 +540,7 @@
                     </ul>
                 </td>
                 <td style="width:50%;">
-                    Odoo POS is the first POS running in a 100% web based environment, which means any computer with a browser can host the POS. The POS is a two-part system with a front-end (interaction with the client) and a back-end (managers can configure the system, print reports, analyse, ...)<br/><br/>
+                    POS is the first POS running in a 100% web based environment, which means any computer with a browser can host the POS. The POS is a two-part system with a front-end (interaction with the client) and a back-end (managers can configure the system, print reports, analyse, ...)<br/><br/>
                      <strong>About the front-end:</strong>
                     <ul>
                         <li>Offline mode. Imagine several cases were having an offline mode is of prime interest: Connexion to server shutdown at a big supermarket / Use in environments that requires mobility but without wifi / Use in large environments like restaurants and gardens / Use in low tech environments</li>

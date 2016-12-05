@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-        <!-- <act_window 
+        <act_window 
             name="Put Money In"
             res_model="cash.box.in"
             src_model="pos.session"
             view_mode="form"
             target="new"
+            groups="base.group_no_one"
             key2="client_action_multi"
             id="action_pos_box_in" />
 
@@ -16,7 +17,8 @@
             src_model="pos.session"
             view_mode="form"
             target="new"
+            groups="base.group_no_one"
             key2="client_action_multi"
-            id="action_pos_box_out" /> -->
+            id="action_pos_box_out" />
     </data>
 </openerp>
