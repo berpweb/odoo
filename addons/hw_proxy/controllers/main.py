@@ -59,7 +59,7 @@ class Proxy(http.Controller):
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Odoo's PosBox</title>
+        <title>PosBox</title>
         <style>
         body {
             width: 480px;

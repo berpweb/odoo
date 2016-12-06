@@ -1346,7 +1346,8 @@ function openerp_pos_screens(instance, module){ //module is instance.point_of_sa
                     this.pos.proxy.print_receipt(QWeb.render('XmlReceipt',{
                         receipt: receipt, widget: self,
                     }));
-                    this.pos.get('selectedOrder').destroy();    //finish order and go back to scan screen
+                    this.pos_widget.screen_selector.set_current_screen(this.next_screen);
+                    //this.pos.get('selectedOrder').destroy();    //finish order and go back to scan screen
                 }else{
                     this.pos_widget.screen_selector.set_current_screen(this.next_screen);
                 }
