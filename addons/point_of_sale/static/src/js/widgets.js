@@ -536,7 +536,12 @@ function openerp_pos_widgets(instance, module){ //module is instance.point_of_sa
             }
 
             var products = this.pos.db.get_product_by_category(this.category.id);
-            this.product_list_widget.set_product_list(products);
+            if (this.category.id == 0){
+				var products = this.pos.db.get_product_by_category(1);
+				this.product_list_widget.set_product_list(products);
+            }else{
+				this.product_list_widget.set_product_list(products);
+            }
 
             this.el.querySelector('.searchbox input').addEventListener('keyup',this.search_handler);
             $('.searchbox input', this.el).keypress(function(e){
