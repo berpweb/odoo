@@ -484,6 +484,7 @@
                                 <field name="name"/>
                                 <field name="parent_id"/>
                                 <field name="sequence"/>
+                                <field name="is_kitchen_categ" />
                             </group>
                         </div>
                     </sheet>

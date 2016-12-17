@@ -1472,6 +1472,7 @@ class pos_category(osv.osv):
         'parent_id': fields.many2one('pos.category','Parent Category', select=True),
         'child_id': fields.one2many('pos.category', 'parent_id', string='Children Categories'),
         'sequence': fields.integer('Sequence', help="Gives the sequence order when displaying a list of product categories."),
+        'is_kitchen_categ': fields.boolean('Is Internal Order Category?', help='Check if you want this category products to appear on the kitchen tickets'),
         
         # NOTE: there is no 'default image', because by default we don't show thumbnails for categories. However if we have a thumbnail
         # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.

@@ -83,9 +83,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Qty of product</strong></td>
+                        <td><strong>Qty of all product</strong></td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getqtytotal2())"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qty of kitchen product</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="formatLang(getkitchenqtytotal())"/>
                         </td>
                     </tr>
                     <!-- <tr>

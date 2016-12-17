@@ -1051,7 +1051,7 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
             }
             return zero_pad(this.pos.pos_session.id,5) +'-'+
                    zero_pad(this.pos.pos_session.login_number,3) +'-'+
-                   zero_pad(this.sequence_number,4);
+                   this.sequence_number;
         },
         addOrderline: function(line){
             if(line.order){

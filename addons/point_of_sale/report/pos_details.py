@@ -78,7 +78,8 @@ class pos_details(report_sxw.rml_parse):
                     'name': pol.product_id.name,
                     'invoice_id': pos.invoice_id.id, 
                     'price_unit': pol.price_unit, 
-                    'qty': pol.qty, 
+                    'qty': pol.qty,
+                    'kitchen_qty': pol.qty if pol.product_id.pos_categ_id.is_kitchen_categ else 0.0,
                     'discount': pol.discount, 
                     'total': (pol.price_unit * pol.qty * (1 - (pol.discount) / 100.0)), 
                     'date_order': pos.date_order, 
@@ -88,6 +89,7 @@ class pos_details(report_sxw.rml_parse):
                 data.append(result)
                 self.total += result['total']
                 self.qty += result['qty']
+                self.kitchen_qty += result['kitchen_qty']
                 self.discount += result['discount']
         if data:
             return data
@@ -96,6 +98,9 @@ class pos_details(report_sxw.rml_parse):
 
     def _get_qty_total_2(self):
         return self.qty
+
+    def _get_kitchen_qty_total(self):
+        return self.kitchen_qty
 
     def _get_sales_total_2(self):
         return self.total
@@ -198,6 +203,7 @@ class pos_details(report_sxw.rml_parse):
         super(pos_details, self).__init__(cr, uid, name, context=context)
         self.total = 0.0
         self.qty = 0.0
+        self.kitchen_qty = 0.0
         self.total_invoiced = 0.0
         self.discount = 0.0
         self.total_discount = 0.0
@@ -210,6 +216,7 @@ class pos_details(report_sxw.rml_parse):
             'gettaxamount': self._get_tax_amount,
             'pos_sales_details':self._pos_sales_details,
             'getqtytotal2': self._get_qty_total_2,
+            'getkitchenqtytotal': self._get_kitchen_qty_total,
             'getsalestotal2': self._get_sales_total_2,
             'getsuminvoice2':self._get_sum_invoice_2,
             'getpaidtotal2': self._paid_total_2,
