@@ -485,6 +485,7 @@
                                 <field name="parent_id"/>
                                 <field name="sequence"/>
                                 <field name="is_kitchen_categ" />
+                                <field name="print_in_kitchen_ticket" />
                             </group>
                         </div>
                     </sheet>

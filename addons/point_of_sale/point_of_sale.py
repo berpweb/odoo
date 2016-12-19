@@ -1473,6 +1473,7 @@ class pos_category(osv.osv):
         'child_id': fields.one2many('pos.category', 'parent_id', string='Children Categories'),
         'sequence': fields.integer('Sequence', help="Gives the sequence order when displaying a list of product categories."),
         'is_kitchen_categ': fields.boolean('Is Internal Order Category?', help='Check if you want this category products to appear on the kitchen tickets'),
+        'print_in_kitchen_ticket': fields.boolean('Print in Kitchen Ticket?', help='Check if you want this category products to be printed on the kitchen tickets'),
         
         # NOTE: there is no 'default image', because by default we don't show thumbnails for categories. However if we have a thumbnail
         # for at least one category, then we display a default image on the other, so that the buttons have consistent styling.
@@ -1507,6 +1508,7 @@ class product_template(osv.osv):
         'available_in_pos': fields.boolean('Available in the Point of Sale', help='Check if you want this product to appear in the Point of Sale'), 
         'to_weight' : fields.boolean('To Weigh With Scale', help="Check if the product should be weighted using the hardware scale integration"),
         'pos_categ_id': fields.many2one('pos.category','Point of Sale Category', help="Those categories are used to group similar products for point of sale."),
+        'print_in_kitchen_ticket' : fields.related('pos_categ_id', 'print_in_kitchen_ticket', type="boolean", relation='pos.category', string="Print in Kitchen Ticket"),
     }
 
     _defaults = {
