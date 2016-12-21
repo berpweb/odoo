@@ -198,23 +198,23 @@ class hr_timesheet_sheet(osv.osv):
         'company_id': lambda self, cr, uid, c: self.pool.get('res.company')._company_default_get(cr, uid, 'hr_timesheet_sheet.sheet', context=c)
     }
 
-    def _sheet_date(self, cr, uid, ids, forced_user_id=False, context=None):
-        for sheet in self.browse(cr, uid, ids, context=context):
-            new_user_id = forced_user_id or sheet.employee_id.user_id and sheet.employee_id.user_id.id
-            if new_user_id:
-                cr.execute('SELECT id \
-                    FROM hr_timesheet_sheet_sheet \
-                    WHERE (date_from <= %s and %s <= date_to) \
-                        AND user_id=%s \
-                        AND id <> %s',(sheet.date_to, sheet.date_from, new_user_id, sheet.id))
-                if cr.fetchall():
-                    return False
-        return True
-
-
-    _constraints = [
-        (_sheet_date, 'You cannot have 2 Attendance Slips that overlap!', ['date_from','date_to']),
-    ]
+#     def _sheet_date(self, cr, uid, ids, forced_user_id=False, context=None):
+#         for sheet in self.browse(cr, uid, ids, context=context):
+#             new_user_id = forced_user_id or sheet.employee_id.user_id and sheet.employee_id.user_id.id
+#             if new_user_id:
+#                 cr.execute('SELECT id \
+#                     FROM hr_timesheet_sheet_sheet \
+#                     WHERE (date_from <= %s and %s <= date_to) \
+#                         AND user_id=%s \
+#                         AND id <> %s',(sheet.date_to, sheet.date_from, new_user_id, sheet.id))
+#                 if cr.fetchall():
+#                     return False
+#         return True
+# 
+# 
+#     _constraints = [
+#         (_sheet_date, 'You cannot have 2 Attendance Slips that overlap!', ['date_from','date_to']),
+#     ]
 
     def action_set_to_draft(self, cr, uid, ids, *args):
         self.write(cr, uid, ids, {'state': 'draft'})
