@@ -537,7 +537,7 @@ function openerp_pos_widgets(instance, module){ //module is instance.point_of_sa
 
             var products = this.pos.db.get_product_by_category(this.category.id);
             if (this.category.id == 0){
-				var products = this.pos.db.get_product_by_category(1);
+				var products = this.pos.db.get_product_by_category(2);
 				this.product_list_widget.set_product_list(products);
             }else{
 				this.product_list_widget.set_product_list(products);
