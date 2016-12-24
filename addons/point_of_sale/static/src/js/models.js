@@ -716,14 +716,8 @@ function openerp_pos_models(instance, module){ //module is instance.point_of_sal
                 var quant = parseFloat(quantity) || 0;
                 var unit = this.get_unit();
                 if(unit){
-                    if (unit.rounding) {
-                        this.quantity    = round_pr(quant, unit.rounding);
-                        var decimals = Math.ceil(Math.log(1.0 / unit.rounding) / Math.log(10));
-                        this.quantityStr = openerp.instances[this.pos.session.name].web.format_value(this.quantity, { type: 'float', digits: [69, decimals]});
-                    } else {
-                        this.quantity    = round_pr(quant, 1);
-                        this.quantityStr = this.quantity.toFixed(0);
-                    }
+                    this.quantity    = round_pr(quant, 1);
+                    this.quantityStr = this.quantity.toFixed(0);
                 }else{
                     this.quantity    = quant;
                     this.quantityStr = '' + this.quantity;
