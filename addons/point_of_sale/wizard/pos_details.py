@@ -30,6 +30,7 @@ class pos_details(osv.osv_memory):
     _columns = {
         'date_start': fields.date('Date Start', required=True),
         'date_end': fields.date('Date End', required=True),
+        'with_product': fields.boolean('With Product?'),
         'user_ids': fields.many2many('res.users', 'pos_details_report_user_rel', 'user_id', 'wizard_id', 'Salespeople'),
     }
     _defaults = {
@@ -49,7 +50,7 @@ class pos_details(osv.osv_memory):
         if context is None:
             context = {}
         datas = {'ids': context.get('active_ids', [])}
-        res = self.read(cr, uid, ids, ['date_start', 'date_end', 'user_ids'], context=context)
+        res = self.read(cr, uid, ids, ['date_start', 'date_end', 'user_ids', 'with_product'], context=context)
         res = res and res[0] or {}
         datas['form'] = res
         if res.get('id',False):

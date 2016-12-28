@@ -12,7 +12,9 @@
                         <field name="date_start"/>
                         <field name="date_end"/>
                     </group>
-                    <!-- <field name="user_ids"/> -->
+                    <group>
+						<field name="with_product" string="With Product?"/>
+					</group>
                     <footer>
                         <button name="print_report" type="object" string="View Report" class="oe_highlight"/>
                         or
