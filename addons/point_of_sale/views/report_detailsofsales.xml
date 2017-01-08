@@ -58,6 +58,12 @@
 	                </table>
 	            </t>
 
+				<t t-if="not data['form']['with_product']">
+					<t t-foreach="pos_sales_details(data['form'])" t-as="line_ids">
+						<span t-esc="formatLang(line_ids['qty'])" style="display:none;" />
+					</t>
+				</t>
+
                 <table class="table table-condensed">
                    <!--  <tr t-if="gettaxamount(data['form'])"><td colspan="2"><strong>Taxes</strong></td></tr>
                     <tr t-foreach="gettaxamount(data['form'])" t-as="tax">
@@ -88,6 +94,12 @@
                         <td><strong>Qty of all product</strong></td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getqtytotal2())"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Qty of customer product</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="formatLang(getqtytotal2() - getkitchenqtytotal())"/>
                         </td>
                     </tr>
                     <tr>
