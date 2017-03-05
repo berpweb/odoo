@@ -52,8 +52,8 @@
                     <attribute name="decoration-info">virtual_available&gt;=0</attribute>
                 </tree>
                 <field name="uom_id" position="before">
-                    <field name="qty_available"/>
-                    <field name="virtual_available"/>
+                    <field name="qty_available" invisible="1"/>
+                    <field name="virtual_available" invisible="1"/>
                 </field>
             </field>
         </record>
