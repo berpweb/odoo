@@ -545,7 +545,7 @@
             <field name="model">account.bank.statement</field>
             <field name="priority">1</field>
             <field name="arch" type="xml">
-                <form string="Bank Statement">
+                <form string="Statements">
                 <header>
                     <field name="all_lines_reconciled" invisible="1" />
                     <button name="%(action_bank_reconcile_bank_statements)d" string="Reconcile" type="action" class="oe_highlight" attrs="{'invisible':['|','|',('all_lines_reconciled','=',True),('line_ids','=',[]),('state', '!=', 'open')]}"/>
@@ -628,7 +628,7 @@
         </record>
 
         <record id="action_bank_statement_tree" model="ir.actions.act_window">
-            <field name="name">Bank Statements</field>
+            <field name="name">Statements</field>
             <field name="res_model">account.bank.statement</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,pivot,graph</field>
