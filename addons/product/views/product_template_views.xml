@@ -29,8 +29,8 @@
                 <attribute name="name">Product Template</attribute>
             </xpath>
             <field name="type" position="after">
-                <field name="default_code" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
-                <field name="barcode" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
+                <field name="default_code" invisible="1"/>
+                <field name="barcode" invisible="1"/>
             </field>
 
             <div name="button_box" position="inside">
@@ -103,7 +103,7 @@
         <field name="name">Products</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">product.template</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban</field>
         <field name="view_type">form</field>
         <field name="view_id" ref="product_template_kanban_view"/>
         <field name="context">{"search_default_filter_to_sell":1}</field>

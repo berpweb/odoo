@@ -91,8 +91,6 @@
         <field name="arch" type="xml">
             <search string="Point of Sale Config">
                 <field name="name" />
-                <filter string="Inactive" domain="[('active', '=', False)]" />
-                <field name="stock_location_id" groups="stock.group_stock_multi_locations" />
             </search>
         </field>
     </record>
@@ -124,7 +122,7 @@
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">pos.config</field>
         <field name="view_type">form</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban</field>
         <field name="domain"></field>
         <field name="search_view_id" ref="view_pos_config_search" />
         <field name="help" type="html">

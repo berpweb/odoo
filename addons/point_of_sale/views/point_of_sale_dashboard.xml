@@ -61,7 +61,7 @@
                                     <div class="o_primary"><t t-esc="record.name.value"/></div>
                                     <div class="o_secondary"><t t-esc="record.pos_session_username.value || 'Unused'"/></div>
                                 </div>
-                                <div class="o_kanban_manage_button_section">
+                                <div class="o_kanban_manage_button_section" invisible="1">
                                     <a class="o_kanban_manage_toggle_button" href="#">More <i class="fa fa-caret-down"/></a>
                                 </div>
                             </div>

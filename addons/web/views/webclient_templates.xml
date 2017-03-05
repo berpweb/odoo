@@ -312,7 +312,7 @@
                 </div>
             </t>
         </div>
-        <div class="o_sub_menu_footer">
+        <div class="o_sub_menu_footer" style="display:none;">
             Powered by <a href="http://www.odoo.com" target="_blank"><span>Odoo</span></a>
         </div>
     </template>
