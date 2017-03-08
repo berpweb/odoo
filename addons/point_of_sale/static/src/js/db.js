@@ -9,7 +9,7 @@ var core = require('web.core');
 
 var PosDB = core.Class.extend({
     name: 'openerp_pos_db', //the prefix of the localstorage data
-    limit: 100,  // the maximum number of results returned by a search
+    limit: 10000,  // the maximum number of results returned by a search
     init: function(options){
         options = options || {};
         this.name = options.name || this.name;

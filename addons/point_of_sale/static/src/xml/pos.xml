@@ -35,7 +35,7 @@
 
             <div class="loader">
                 <div class='loader-feedback oe_hidden'>
-                    <h1 class='message'>Loading</h1>
+                    <h1 class='message oe_hidden'>Loading</h1>
                     <div class='progressbar'>
                         <div class='progress' width='50%'></div>
                     </div>
@@ -326,7 +326,7 @@
                         <span class='label'>Street</span>
                         <input class='detail client-address-street' name='street'       t-att-value='partner.street || ""' placeholder='Street'></input>
                     </div>
-                    <div class='client-detail'>
+                    <div class='client-detail oe_hidden'>
                         <span class='label'>City</span>
                         <input class='detail client-address-city'   name='city'         t-att-value='partner.city || ""' placeholder='City'></input>
                     </div>
@@ -355,11 +355,11 @@
                         <span class='label'>Phone</span>
                         <input class='detail client-phone'  name='phone'    type='tel'      t-att-value='partner.phone || ""'></input>
                     </div>
-                    <div class='client-detail'>
+                    <div class='client-detail oe_hidden'>
                         <span class='label'>Barcode</span>
                         <input class='detail barcode'       name='barcode'    t-att-value='partner.barcode || ""'></input>
                     </div>
-                    <div class='client-detail'>
+                    <div class='client-detail oe_hidden'>
                         <span class='label'>Tax ID</span>
                         <input class='detail vat'           name='vat'     t-att-value='partner.vat || ""'></input>
                     </div>
@@ -407,7 +407,7 @@
                     </div>
                 </div>
                 <div class='client-details-right'>
-                    <div class='client-detail'>
+                    <div class='client-detail oe_hidden'>
                         <span class='label'>Barcode</span>
                         <t t-if='partner.barcode'>
                             <span class='detail client-id'><t t-esc='partner.barcode'/></span>
@@ -416,7 +416,7 @@
                             <span class='detail client-id empty'>N/A</span>
                         </t>
                     </div>
-                    <div class='client-detail'>
+                    <div class='client-detail oe_hidden'>
                         <span class='label'>Tax ID</span>
                         <t t-if='partner.vat'>
                             <span class='detail vat'><t t-esc='partner.vat'/></span>
@@ -1265,7 +1265,7 @@
                     <t t-if="orderlines.length === 0" >
                         <div class='order-empty'>
                             <i class='fa fa-shopping-cart' />
-                            <h1>Your shopping cart is empty</h1>
+                            <h1>Please enter your order!</h1>
                         </div>
                     </t>
                     <t t-if="orderlines.length > 0">

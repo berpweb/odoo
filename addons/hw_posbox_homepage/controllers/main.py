@@ -29,14 +29,14 @@ index_template = """
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Odoo's PosBox</title>
+        <titlePosBox</title>
 """ + index_style + """
     </head>
     <body>
         <h1>Your PosBox is up and running</h1>
         <p>
         The PosBox is a hardware adapter that allows you to use
-        receipt printers and barcode scanners with Odoo's Point of
+        receipt printers and barcode scanners with Point of
         Sale, <b>version 8.0 or later</b>. You can start an <a href='https://www.odoo.com/start'>online free trial</a>,
         or <a href='https://www.odoo.com/page/download'>download and install</a> it yourself.
         </p>
