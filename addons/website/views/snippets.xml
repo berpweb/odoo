@@ -395,7 +395,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" data-toggle="collapse">
                         <h4 class="panel-title">
-                            Which hardware does Odoo POS support?
+                            Which hardware does POS support?
                         </h4>
                     </div>
                     <div class="panel-collapse collapse" role="tabpanel">
