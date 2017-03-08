@@ -737,8 +737,13 @@ var ProductCategoriesWidget = PosBaseWidget.extend({
             buttons[i].addEventListener('click',this.switch_category_handler);
         }
 
-        var products = this.pos.db.get_product_by_category(this.category.id); 
-        this.product_list_widget.set_product_list(products); // FIXME: this should be moved elsewhere ... 
+        var products = this.pos.db.get_product_by_category(this.category.id);
+        if (this.category.id == 0){
+            var products = this.pos.db.get_product_by_category(1);
+            this.product_list_widget.set_product_list(products);
+        }else{
+            this.product_list_widget.set_product_list(products);
+        }
 
         this.el.querySelector('.searchbox input').addEventListener('keypress',this.search_handler);
 
