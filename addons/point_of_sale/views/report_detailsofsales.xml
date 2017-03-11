@@ -98,6 +98,12 @@
                             <strong t-esc="formatLang(getkitchenqtytotal())"/>
                         </td>
                     </tr>
+                    <tr>
+                        <td><strong>Qty of Slices</strong></td>
+                        <td class="text-right">
+                            <strong t-esc="formatLang(getkitchenqtytotal() * 7)"/>
+                        </td>
+                    </tr>
                     <!-- <tr>
                         <td><strong>Total invoiced</strong></td>
                         <td class="text-right">
