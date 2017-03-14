@@ -32,7 +32,7 @@ var DiscountButton = screens.ActionButtonWidget.extend({
         }
 
         // Add discount
-        var discount = - pc / 100.0 * order.get_total_with_tax();
+        var discount = - pc / 100.0 * order.get_total_without_tax();
 
         if( discount < 0 ){
             order.add_product(product, { price: discount });

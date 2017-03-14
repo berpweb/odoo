@@ -1465,6 +1465,7 @@ exports.Orderline = Backbone.Model.extend({
         var taxtotal = 0;
 
         var product =  this.get_product();
+        var dicount_product = this.pos.db.get_product_by_id(this.pos.config.discount_product_id[0]);
         var taxes_ids = product.taxes_id;
         var taxes =  this.pos.taxes;
         var taxdetail = {};
@@ -1476,11 +1477,24 @@ exports.Orderline = Backbone.Model.extend({
             }));
         });
 
+
         var all_taxes = this.compute_all(product_taxes, price_unit, this.get_quantity(), this.pos.currency.rounding);
         _(all_taxes.taxes).each(function(tax) {
             taxtotal += tax.amount;
             taxdetail[tax.id] = tax.amount;
         });
+
+        if (product === dicount_product){
+            _(all_taxes.taxes).each(function(tax) {
+                taxdetail[tax.id] = 0;
+            });
+            return {
+                "priceWithTax": price_unit,
+                "priceWithoutTax": price_unit,
+                "tax": 0,
+                "taxDetails": taxdetail,
+            };
+        }
 
         return {
             "priceWithTax": all_taxes.total_included,
