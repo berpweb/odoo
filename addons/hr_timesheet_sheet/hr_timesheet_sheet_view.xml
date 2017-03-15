@@ -85,7 +85,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <button type="action"
+                        <button type="action" invisible="1"
                             name="%(act_hr_timesheet_sheet_sheet_2_hr_analytic_timesheet)d"
                             class="oe_stat_button"
                             icon="fa-clock-o">
@@ -95,7 +95,7 @@
                             </div>
                         </button>
                         <button type="action" groups="base.group_hr_attendance"
-                            class="oe_stat_button" icon="fa-users"
+                            class="oe_stat_button" icon="fa-users" invisible="1"
                             name="%(act_hr_timesheet_sheet_sheet_2_hr_attendance)d">
                             <field name="attendance_count" widget="statinfo" string="Attendances"/>
                         </button>
