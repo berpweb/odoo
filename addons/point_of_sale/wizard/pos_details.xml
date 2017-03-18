@@ -13,7 +13,7 @@
                         <field name="date_end"/>
                     </group>
                     <group>
-						<field name="with_product" string="With Product?"/>
+						<field name="with_product" string="With Product?" invisible="1"/>
 					</group>
                     <footer>
                         <button name="print_report" type="object" string="View Report" class="oe_highlight"/>

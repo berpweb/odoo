@@ -3,67 +3,44 @@
 <data>
 <template id="report_detailsofsales">
     <t t-call="report.html_container">
-         <div class="header"></div>
-            <div class="page" style="width:150px;">
-                <h4>Details of Sales</h4>
-                <table class="table table-condensed">
-	                    <thead>
-	                        <th><strong>Start Date</strong></th>
-	                        <th><strong>End Date</strong></th>
-                            <th><strong>Print Date</strong></th>
-	                    </thead>
-	                    <tbody>
-	                        <tr>
-	                            <td>
-	                                <span t-esc="formatLang(data['form']['date_start'],date=True)"/>
-	                            </td>
-	                            <td>
-	                                <span t-esc="formatLang(data['form']['date_end'],date=True)"/>
-	                            </td>
-                                <td>
-                                    <span t-esc="formatLang(time.strftime('%Y-%m-%d'),date=True)"/>
-                                </td>
-	                        </tr>
-	                    </tbody>
-	                </table>
-
-                <t t-if="data['form']['with_product']">
-	                <table class="table table-condensed">
-	                    <thead>
-	                        <th><strong>Date</strong></th>
-	                        <th><strong>Product</strong></th>
-	                        <th class="text-right"><strong>Price</strong></th>
-	                        <th class="text-center"><strong>Qty</strong></th>
-	                    </thead>
-	                    <tbody>
-	                        <tr t-foreach="pos_sales_details(data['form'])" t-as="line_ids">
-	                            <td>
-	                                <span t-esc="formatLang(line_ids['date_order'], date_time=True)"/>
-	                            </td>
-	                            <td>
-	                                <span t-esc="line_ids['name']"/>
-	                            </td>
-	                            <td class="text-right">
-	                                <span t-esc="formatLang(line_ids['price_unit'], dp='Sale Price', currency_obj=res_company.currency_id)"/>
-	                            </td>
-	                            <td class="text-center">
-	                                <span t-esc="formatLang(line_ids['qty'])"/>
-	                                <span t-esc="line_ids['uom']"/>
-	                            </td>
-	                        </tr>
-	                    </tbody>
-	                </table>
-	            </t>
-
-				<t t-if="not data['form']['with_product']">
-					<t t-foreach="pos_sales_details(data['form'])" t-as="line_ids">
-						<span t-esc="formatLang(line_ids['qty'])" style="display:none;" />
-					</t>
-				</t>
-
-                <table class="table table-condensed">
+        <div class="header"></div>
+        <div class="page" style="margin-left: -13px;">
+            <div class="pos-sale-ticket" style="font-size:1.2em;font-weight:bold;color:black;font-family: Lato;">
+                <table>
+                <colgroup>
+                    <col width='60%' />
+                    <col width='30%' />
+                    <col width='10%' />
+                </colgroup>
+                <tr>
+                    <th width='60%' class="text-left">Start Date</th>
+                    <th width='30%' class="text-right">End Date</th>
+                    <th width='10%'></th>
+                </tr>
+                <tr>
+                    <td class="text-left"><span t-esc="formatLang(data['form']['date_start'],date=True)"/></td>
+                    <td class="text-right"><span t-esc="formatLang(data['form']['date_end'],date=True)"/></td>
+                </tr>
+                </table>
+                <br />
+                <t t-if="not data['form']['with_product']">
+                    <t t-foreach="pos_sales_details(data['form'])" t-as="line_ids">
+                        <span t-esc="formatLang(line_ids['qty'])" style="display:none;" />
+                    </t>
+                </t>
+                <table>
+                    <colgroup>
+                        <col width='60%' />
+                        <col width='30%' />
+                        <col width='10%' />
+                    </colgroup>
                     <tr>
-                        <td colspan="2"><strong>Payment</strong></td>
+                        <th width='60%'></th>
+                        <th width='30%'></th>
+                        <th width='10%'></th>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Payments</strong></td>
                     </tr>
                     <tr t-foreach="getpayments(data['form'])" t-as="payment">
                         <td><span t-esc="payment['name']"/></td>
@@ -71,65 +48,55 @@
                             <strong t-esc="formatLang(payment['sum'], dp='Account', currency_obj=res_company.currency_id)"/>
                         </td>
                     </tr>
+                    <br />
                     <tr>
                         <td colspan="2"><strong>Summary</strong></td>
                     </tr>
                     <tr>
-                        <td><strong>Sales total</strong></td>
+                        <td>Sales total</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getsalestotal2(), dp='Sale Price', currency_obj=res_company.currency_id)"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Qty of all product</strong></td>
+                        <td>Qty of all product</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getqtytotal2())"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Qty of customer product</strong></td>
+                        <td>Qty of customer product</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getqtytotal2() - getkitchenqtytotal())"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Qty of kitchen product</strong></td>
+                        <td>Qty of kitchen product</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getkitchenqtytotal())"/>
                         </td>
                     </tr>
                     <tr>
-                        <td><strong>Qty of Slices</strong></td>
+                        <td>Qty of Slices</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getkitchenqtytotal() * 7)"/>
                         </td>
                     </tr>
-                    <!-- <tr>
-                        <td><strong>Total invoiced</strong></td>
-                        <td class="text-right">
-                            <strong t-esc="formatLang(getsuminvoice2(data['form']), dp='Sale Price', currency_obj=res_company.currency_id)"/>
-                        </td>
-                    </tr> -->
                     <tr>
-                        <td><strong>Total discount</strong></td>
-                        <td class="text-right">
-                            <strong t-esc="formatLang(getsumdisc(data['form']), dp='Sale Price', currency_obj=res_company.currency_id)"/>
-                        </td>
+                    <td>Total discount</td>
+                    <td class="text-right">
+                        <strong t-esc="formatLang(getsumdisc(data['form']), dp='Sale Price', currency_obj=res_company.currency_id)"/>
+                    </td>
                     </tr>
                     <tr>
-                        <td><strong>Total paid</strong></td>
+                        <td>Total paid</td>
                         <td class="text-right">
                             <strong t-esc="formatLang(getpaidtotal2(), dp='Sale Price', currency_obj=res_company.currency_id)"/>
                         </td>
                     </tr>
-                    <!-- <tr>
-                        <td><strong>Total of the day</strong></td>
-                        <td class="text-right">
-                            <strong t-esc="formatLang(gettotaloftheday(data['form']), dp='Sale Price', currency_obj = res_company.currency_id)"/>
-                        </td>
-                    </tr> -->
                 </table>
             </div>
+        </div>
     </t>
 </template>
 </data>
