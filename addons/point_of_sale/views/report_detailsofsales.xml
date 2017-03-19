@@ -4,8 +4,13 @@
 <template id="report_detailsofsales">
     <t t-call="report.html_container">
         <div class="header"></div>
-        <div class="page" style="margin-left: -13px;">
+        <div class="page">
             <div class="pos-sale-ticket" style="font-size:1.2em;font-weight:bold;color:black;font-family: Lato;">
+                <table>
+                    <tr>
+                        <th style="text-align: center; !important">Pizza King - End of Sale Report</th>
+                    </tr>
+                </table>
                 <table>
                 <colgroup>
                     <col width='60%' />
