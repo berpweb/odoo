@@ -3,8 +3,7 @@
 <data>
 <template id="report_detailsofsales">
     <t t-call="report.html_container">
-        <div class="header"></div>
-        <div class="page">
+        <div class="page" style="font-size:1.2em;font-weight:bold;color:black;font-family: Lato;">
             <div class="pos-sale-ticket" style="font-size:1.2em;font-weight:bold;color:black;font-family: Lato;">
                 <table>
                     <tr>
