@@ -795,6 +795,7 @@ class Picking(models.Model):
                             raise UserError(_('Some products require lots/serial numbers, so you need to specify those first!'))
                 view = self.env.ref('stock.view_immediate_transfer')
                 wiz = self.env['stock.immediate.transfer'].create({'pick_id': pick.id})
+                return wiz.process()
                 # TDE FIXME: a return in a loop, what a good idea. Really.
                 return {
                     'name': _('Immediate Transfer?'),
