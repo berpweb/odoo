@@ -467,7 +467,7 @@
         </t>
     </template>
 
-    <record id="planner_inventory" model="web.planner">
+    <!--<record id="planner_inventory" model="web.planner">
         <field name="name">Inventory planner</field>
         <field name="view_id" ref="inventory_planner"/>
         <field name="menu_id" ref="menu_stock_root"/>
@@ -475,6 +475,6 @@
         <field name="tooltip_planner"><![CDATA[
             Inventory Configuration: a step-by-step guide.]]>
         </field>
-    </record>
+    </record>-->
 
 </odoo>

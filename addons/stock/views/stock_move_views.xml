@@ -75,7 +75,7 @@
             <field eval="12" name="priority"/>
             <field name="arch" type="xml">
                 <tree decoration-muted="scrapped == True" string="Stock Moves" editable="bottom">
-                    <field name="product_id"/>
+                    <field name="product_id" options="{'no_open': True, 'no_create': True}"/>
                     <field name="name" invisible="1"/>
                     <field name="product_uom_qty"/>
                     <field name="product_uom" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="product.group_uom"/>
@@ -88,7 +88,7 @@
                     <field name="reserved_availability" invisible="1"/>
                     <field name="location_dest_id" invisible="1"/>
                     <field name="remaining_qty" invisible="1"/>
-                    <field name="state"/>
+                    <field name="state" invisible="1"/>
                 </tree>
             </field>
         </record>

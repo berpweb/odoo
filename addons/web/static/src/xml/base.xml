@@ -65,7 +65,7 @@
         <div class="o_cp_searchview"/>
         <div class="o_cp_left">
             <div class="o_cp_buttons"/>
-            <div class="o_cp_sidebar"/>
+            <div class="o_cp_sidebar" style="display:none;"/>
         </div>
         <div class="o_cp_right">
             <div class="btn-group o_search_options"/>
@@ -906,7 +906,7 @@
         </div>
     </t>
 </div>
-<div t-name="SearchView" class="o_searchview">
+<div t-name="SearchView" class="o_searchview" style="display:none;">
     <span class="o_searchview_more fa" title="Advanced Search..."/>
 </div>
 <input t-name="SearchView.InputView" type="text" class="o_searchview_input" placeholder="Search..."/>
@@ -925,7 +925,7 @@
     <ul class="dropdown-menu o_searchview_autocomplete" role="menu"></ul>
 </t>
 
-<div t-name="SearchView.FilterMenu" class="btn-group o_dropdown">
+<div t-name="SearchView.FilterMenu" class="btn-group o_dropdown" style="display:none;">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="fa fa-filter"/> Filters <span class="caret"/>
     </button>
@@ -1034,7 +1034,7 @@
     </select>
 </t>
 
-<div t-name="SearchView.GroupByMenu" class="btn-group hidden-xs o_dropdown">
+<div t-name="SearchView.GroupByMenu" class="btn-group hidden-xs o_dropdown" style="display:none;">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="fa fa-bars"/> Group By <span class="caret"/>
     </button>
@@ -1056,7 +1056,7 @@
     </li>
 </t>
 
-<div t-name="SearchView.FavoriteMenu" class="btn-group o_dropdown">
+<div t-name="SearchView.FavoriteMenu" class="btn-group o_dropdown" style="display:none;">
     <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
         <span class="fa fa-star"/> Favorites <span class="caret"/>
     </button>
