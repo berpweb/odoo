@@ -296,7 +296,7 @@
                         <field name="company_id" options="{'no_create': True}" readonly="0"
                             groups="base.group_multi_company"/>
                     </group>
-                    <group string="Email Preferences">
+                    <group string="Email Preferences" invisible="1">
                         <field name="email" widget="email" readonly="0"/>
                         <field name="signature" readonly="0"/>
                     </group>

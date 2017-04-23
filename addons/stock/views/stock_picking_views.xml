@@ -228,7 +228,7 @@
                     </h1>
                     <group class="hidden-xs">
                         <group>
-                            <field name="partner_id" string="Customer/Supplier" attrs="{'invisible': [('picking_type_code', '=', 'internal')]}" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="partner_id" string="Supplier" attrs="{'invisible': [('picking_type_code', '=', 'internal')]}" options="{'no_open': True, 'no_create': True}"/>
                             <field name="location_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'outgoing')]}"/>
                             <field name="location_dest_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('picking_type_code', '=', 'incoming')]}"/>
                             <field name="backorder_id" readonly="1" attrs="{'invisible': [('backorder_id','=',False)]}"/>
