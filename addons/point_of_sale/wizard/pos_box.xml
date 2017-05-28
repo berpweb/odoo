@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-        <act_window 
+        <!--<act_window
             id="action_pos_box_in"
             name="Put Money In"
             res_model="cash.box.in"
@@ -16,5 +16,5 @@
             src_model="pos.session"
             view_mode="form"
             target="new"
-            key2="client_action_multi"/>
+            key2="client_action_multi"/>-->
 </odoo>
