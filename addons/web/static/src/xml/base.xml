@@ -559,7 +559,7 @@
 </div>
 
 <t t-name="PivotView.buttons">
-    <div class="btn-group btn-group-sm" role="group">
+    <div class="btn-group btn-group-sm" role="group" style="display:none;">
         <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown">
             Measures <span class="caret"/>
         </button>
@@ -572,14 +572,14 @@
         </ul>
     </div>
     <div class="btn-group btn-group-sm">
-        <button class="btn btn-default fa fa-expand o_pivot_flip_button" title="Flip axis"/>
+        <button class="btn btn-default fa fa-expand o_pivot_flip_button" title="Flip axis" style="display:none;"/>
         <button class="btn btn-default fa fa-arrows-alt o_pivot_expand_button" title="Expand all"/>
         <button class="btn btn-default fa fa-download o_pivot_download" title="Download xls"/>
     </div>
 </t>
 
 <t t-name="PivotView.FieldSelection">
-    <ul class="dropdown-menu o_pivot_field_menu" role="menu">
+    <ul class="dropdown-menu o_pivot_field_menu" role="menu" style="display:none;">
         <t t-foreach="fields" t-as="field">
             <t t-if="(field[1].type === 'date') || (field[1].type === 'datetime')">
                 <li class="o_inline_dropdown" t-att-data-field="field[0]">
