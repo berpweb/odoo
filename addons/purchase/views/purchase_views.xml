@@ -202,14 +202,25 @@
                         </group>
                         <group>
                             <field name="date_order"/>
+                            <label for="date_planned"/>
+                            <div>
+                                <field name="date_planned" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
+                                <button name="action_set_date_planned" type="object"
+                                    states="draft,sent"
+                                    string="Set date to all order lines"
+                                    help="This changes the scheduled date of all order lines to the given date"
+                                    class="fa fa-calendar o_icon_button oe_edit_only"/>
+                            </div>
                             <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
+                            <field name="invoice_status"/>
+                            <field name="payment_term_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Products">
                             <field name="order_line" attrs="{'readonly': [('state', 'in', ('done', 'cancel'))]}">
-                                 <tree string="Purchase Order Lines" editable="bottom">
+                                 <tree string="Purchase Order Lines">
                                     <field name="currency_id" invisible="1"/>
                                     <field name="state" invisible="1"/>
                                     <field name="sequence" widget="handle"/>
@@ -224,7 +235,7 @@
                                     <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
                                     <field name="product_uom" groups="product.group_uom" attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}"/>
                                     <field name="price_unit"/>
-                                    <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}"/>
+                                    <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}" invisible="1"/>
                                     <field name="price_subtotal" widget="monetary"/>
                                 </tree>
                                 <form string="Purchase Order Line">
@@ -240,9 +251,10 @@
                                                     <field name="product_uom" groups="product.group_uom" class="oe_inline"/>
                                                 </div>
                                                 <field name="price_unit"/>
+                                                <field name="state" invisible="1"/>
                                             </group>
                                             <group>
-                                                <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]"/>
+                                                <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" invisible="1"/>
                                                 <field name="date_planned" widget="date"/>
                                                 <field name="account_analytic_id" colspan="2" groups="purchase.group_analytic_accounting"/>
                                                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
@@ -251,7 +263,7 @@
                                         <notebook>
                                         <page string="Notes">
                                             <field name="name"/>
-                                        </page><page string="Invoices and Incoming Shipments">
+                                        </page><page string="Invoices and Incoming Shipments" invisible="1">
                                             <field name="invoice_lines"/>
                                             <field name="move_ids"/>
                                         </page>
@@ -270,26 +282,15 @@
                             <field name="notes" class="oe_inline" placeholder="An administrator can set up default Terms and conditions in your Company settings."/>
                             <div class="oe_clear"/>
                         </page>
-                        <page string="Deliveries &amp; Invoices">
+                        <page string="Deliveries &amp; Invoices" invisible="1">
                             <group>
                                 <group>
-                                    <label for="date_planned"/>
-                                    <div>
-                                        <field name="date_planned" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
-                                        <button name="action_set_date_planned" type="object"
-                                            states="draft,sent"
-                                            string="Set date to all order lines"
-                                            help="This changes the scheduled date of all order lines to the given date"
-                                            class="fa fa-calendar o_icon_button oe_edit_only"/>
-                                    </div>
                                     <field name="picking_type_id" domain="[('code','=','incoming')]" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
                                     <field name="dest_address_id" groups="stock.group_stock_multi_locations" attrs="{'invisible': [('default_location_dest_id_usage', '!=', 'customer')], 'required': [('default_location_dest_id_usage', '=', 'customer')]}"/>
                                     <field name="default_location_dest_id_usage" invisible="1"/>
                                     <field name="incoterm_id"/>
                                 </group>
                                 <group>
-                                    <field name="invoice_status"/>
-                                    <field name="payment_term_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
                                     <field name="fiscal_position_id" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
                                     <field name="date_approve" groups="base.group_no_one"/>
                                 </group>
