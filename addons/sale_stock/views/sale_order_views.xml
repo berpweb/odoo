@@ -17,7 +17,7 @@
                     </button>
                 </xpath>
                 <xpath expr="//group[@name='sales_person']" position="before">
-                    <group string="Shipping Information" name="sale_shipping">
+                    <group string="Shipping Information" name="sale_shipping" invisible="1">
                         <field name="warehouse_id" options="{'no_create': True}" groups="stock.group_stock_multi_locations"/>
                         <field name="incoterm" widget="selection" groups="base.group_user"/>
                         <field name="picking_policy" required="True"/>

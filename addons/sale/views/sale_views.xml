@@ -183,8 +183,8 @@
                     <group>
                         <group>
                             <field name="partner_id" domain="[('customer','=',True)]" context="{'search_default_customer':1, 'show_address': 1}" options='{"always_reload": True}'/>
-                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}"/>
-                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}"/>
+                            <field name="partner_invoice_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'invoice'}" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
+                            <field name="partner_shipping_id" groups="sale.group_delivery_invoice_address" context="{'default_type':'delivery'}" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
                         </group>
                         <group>
                             <field name="date_order" attrs="{'invisible': [('state', 'in', ['sale', 'done', 'cancel'])]}"/>
@@ -192,7 +192,7 @@
                             <field name="confirmation_date" attrs="{'invisible': [('state', 'in', ['draft', 'sent', 'cancel'])]}"/>
                             <field name="pricelist_id" groups="product.group_sale_pricelist"/>
                             <field name="currency_id" invisible="1"/>
-                            <field name="payment_term_id" options="{'no_create': True}"/>
+                            <field name="payment_term_id" options="{'no_create': True}" attrs="{'invisible': [('state', 'in', ['draft', 'sent'])]}"/>
                         </group>
                     </group>
                     <notebook>
@@ -201,11 +201,13 @@
                                 attrs="{'readonly': [('state', 'in', ('done','cancel'))]}">
                                 <form string="Sales Order Lines">
                                     <group>
+                                        <field name="product_id" string="Part Number/Product Name"
+                                            context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
+                                            attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"
+                                           />
+                                    </group>
+                                    <group>
                                         <group>
-                                            <field name="product_id"
-                                                context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
-                                                attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"
-                                               />
                                             <field name="layout_category_id" groups="sale.group_sale_layout"/>
                                             <field name="invoice_status" invisible="1"/>
                                             <field name="qty_to_invoice" invisible="1"/>
@@ -234,7 +236,7 @@
                                                 <field name="discount" class="oe_inline"/> %%
                                             </div>
                                         </group>
-                                        <group>
+                                        <group groups="base.group_no_one">
                                             <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
                                                 attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
                                             <label for="customer_lead"/>
@@ -257,7 +259,7 @@
                                 </form>
                                 <tree string="Sales Order Lines" editable="bottom" decoration-info="invoice_status=='to invoice'">
                                     <field name="sequence" widget="handle"/>
-                                    <field name="product_id"
+                                    <field name="product_id" string="Part Number"
                                         attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}"
                                         context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id}"
                                        />
@@ -280,7 +282,7 @@
                                     <field name="price_unit"
                                         attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
                                     <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
-                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}" invisible="1"/>
                                     <field name="discount" groups="sale.group_discount_per_so_line"/>
                                     <field name="price_subtotal" widget="monetary" groups="sale.group_show_price_subtotal"/>
                                     <field name="price_total" widget="monetary" groups="sale.group_show_price_total"/>
@@ -334,8 +336,8 @@
                             <group>
                                 <group string="Sales Information" name="sales_person">
                                     <field name="user_id"/>
-                                    <field name="team_id" options="{'no_create': True}"/>
-                                    <field name="client_order_ref"/>
+                                    <field name="team_id" options="{'no_create': True}" invisible="1"/>
+                                    <field name="client_order_ref" invisible="1"/>
                                     <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                                     <field name="project_id" attrs="{'invisible':[('state','=','sale')]}" context="{'default_partner_id':partner_invoice_id, 'default_name':name}" groups="analytic.group_analytic_accounting"/>
                                     <field name="related_project_id"
@@ -343,7 +345,7 @@
                                            context="{'default_partner_id':partner_invoice_id, 'default_name':name}"
                                            groups="analytic.group_analytic_accounting"/>
                                 </group>
-                                <group name="sale_pay" string="Invoicing">
+                                <group name="sale_pay" string="Invoicing" invisible="1">
                                     <field name="fiscal_position_id" options="{'no_create': True}"/>
                                     <field name="invoice_status"
                                         attrs="{'invisible': [('state', 'not in', ('sale','done'))]}"/>
@@ -508,7 +510,7 @@
 
 
         <record id="action_quotations" model="ir.actions.act_window">
-            <field name="name">Quotations</field>
+            <field name="name">Estimates</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">sale.order</field>
             <field name="view_type">form</field>
@@ -518,13 +520,13 @@
             <field name="context">{'hide_sale': True}</field>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
-                Create a Quotation, the first step of a new sale.
+                Create a Estimates, the first step of a new sale.
               </p><p>
-                Your next actions should flow efficiently: confirm the Quotation
+                Your next actions should flow efficiently: confirm the Estimates
                 to a Sale Order, then create the Invoice and collect the Payment.
               </p><p>
-                Note that once a Quotation becomes a Sale Order, it will be moved
-                from the Quotations list to the Sales Order list.
+                Note that once a Estimates becomes a Sale Order, it will be moved
+                from the Estimates list to the Sales Order list.
               </p>
             </field>
         </record>

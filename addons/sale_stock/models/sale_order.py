@@ -23,7 +23,7 @@ class SaleOrder(models.Model):
     picking_policy = fields.Selection([
         ('direct', 'Deliver each product when available'),
         ('one', 'Deliver all products at once')],
-        string='Shipping Policy', required=True, readonly=True, default='direct',
+        string='Shipping Policy', required=True, readonly=True, default='one',
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]})
     warehouse_id = fields.Many2one(
         'stock.warehouse', string='Warehouse',
