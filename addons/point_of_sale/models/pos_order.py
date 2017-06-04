@@ -379,7 +379,7 @@ class PosOrder(models.Model):
         readonly=True, default=_default_session)
     config_id = fields.Many2one('pos.config', related='session_id.config_id', string="Point of Sale")
     state = fields.Selection(
-        [('draft', 'New'), ('cancel', 'Cancelled'), ('paid', 'Paid'), ('done', 'Posted'), ('invoiced', 'Invoiced')],
+        [('draft', 'New'), ('cancel', 'Cancelled'), ('paid', 'Paid'), ('done', 'Done'), ('invoiced', 'Invoiced')],
         'Status', readonly=True, copy=False, default='draft')
 
     invoice_id = fields.Many2one('account.invoice', string='Invoice', copy=False)

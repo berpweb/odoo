@@ -38,6 +38,7 @@
     <menuitem
         id="menu_pos_products"
         action="product_product_action"
+        groups="base.group_no_one"
         parent="menu_point_of_sale" sequence="3"/>
 
     <record id="product_template_form_view" model="ir.ui.view">
