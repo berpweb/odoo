@@ -15,7 +15,7 @@
                     </button>
                 </div>
                 <xpath expr="//page[@name='sales_purchases']/group">
-                    <group string="Point of Sale" name="point_of_sale">
+                    <group string="Point of Sale" name="point_of_sale" invisible="1">
                         <field name="barcode" />
                     </group>
                 </xpath>

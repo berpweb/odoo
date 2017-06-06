@@ -181,7 +181,7 @@ class Partner(models.Model, FormatAddress):
          ('invoice', 'Invoice address'),
          ('delivery', 'Shipping address'),
          ('other', 'Other address')], string='Address Type',
-        default='contact',
+        default='invoice',
         help="Used to select automatically the right address according to the context in sales and purchases documents.")
     street = fields.Char()
     street2 = fields.Char()
