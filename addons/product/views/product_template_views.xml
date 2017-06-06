@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="Product">
                 <field name="sequence" widget="handle"/>
-                <field name="default_code"/>
+                <field name="default_code" string="Part Number"/>
                 <field name="name"/>
                 <field name="list_price"/>
                 <field name="standard_price"/>
@@ -29,7 +29,7 @@
                 <attribute name="name">Product Template</attribute>
             </xpath>
             <field name="type" position="after">
-                <field name="default_code" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
+                <field name="default_code" attrs="{'invisible': [('product_variant_count', '>', 1)]}" string="Part Number"/>
                 <field name="barcode" attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
             </field>
 

@@ -44,14 +44,12 @@
     <record id="product_template_form_view" model="ir.ui.view">
         <field name="name">product.template.form.inherit</field>
         <field name="model">product.template</field>
-        <field name="inherit_id" ref="stock.view_template_property_form"/>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
         <field name="arch" type="xml">
-            <group name="sale_condition" position="after">
-                <group name="pos" string="Point of Sale">
-                    <field name="available_in_pos"/>
-                    <field name="pos_categ_id" attrs="{'invisible': [('available_in_pos', '=', False)]}"/>
-                    <field name="to_weight" attrs="{'invisible': [('available_in_pos', '=', False)]}"/>
-                </group>
+            <group name="group_standard_price" position="inside">
+                <field name="available_in_pos"/>
+                <field name="pos_categ_id" attrs="{'invisible': [('available_in_pos', '=', False)]}"/>
+                <field name="to_weight" invisible="1"/>
             </group>
         </field>
     </record>
