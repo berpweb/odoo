@@ -469,6 +469,7 @@
 
     <record id="planner_inventory" model="web.planner">
         <field name="name">Inventory planner</field>
+        <field name="active">False</field>
         <field name="view_id" ref="inventory_planner"/>
         <field name="menu_id" ref="menu_stock_root"/>
         <field name="planner_application">planner_inventory</field>

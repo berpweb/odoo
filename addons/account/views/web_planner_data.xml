@@ -670,6 +670,7 @@
     <!--Planner Data-->
     <record id="planner_account" model="web.planner">
         <field name="name">Account strategy planner</field>
+        <field name="active">False</field>
         <field name="view_id" ref="account_planner"/>
         <field name="menu_id" ref="menu_finance"/>
         <field name="planner_application">planner_account</field>
