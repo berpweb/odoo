@@ -40,7 +40,7 @@
 
 
     <!-- Purchase Control Menu -->
-    <menuitem id="menu_purchase_control" name="Control" parent="purchase.menu_purchase_root" sequence="4"/>
+    <menuitem id="menu_purchase_control" name="Control" parent="purchase.menu_purchase_root" sequence="4" groups="base.group_no_one"/>
 
     <!--Inventory control-->
     <menuitem action="stock.action_receipt_picking_move" id="menu_action_picking_tree_in_move"
@@ -79,7 +79,7 @@
 
       <!-- Product menu-->
       <menuitem name="Products" id="menu_procurement_partner_contact_form" action="product_normal_action_puchased"
-          parent="menu_procurement_management" sequence="20"/>
+          parent="menu_procurement_management" sequence="20" groups="base.group_no_one"/>
 
       <menuitem name="Purchasable Products" id="menu_product_normal_action_puchased" action="product_normal_action_puchased"
           parent="account.menu_finance_payables" sequence="110"/>
@@ -155,10 +155,10 @@
             <field name="arch" type="xml">
                 <form string="Purchase Order">
                 <header>
-                    <button name="action_rfq_send" states="draft" string="Send RFQ by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
-                    <button name="action_rfq_send" states="sent" string="Re-Send RFQ by Email" type="object" context="{'send_rfq':True}"/>
-                    <button name="print_quotation" string="Print RFQ" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
-                    <button name="print_quotation" string="Print RFQ" type="object" states="sent" groups="base.group_user"/>
+                    <button name="action_rfq_send" states="draft" string="Send by Email" type="object" context="{'send_rfq':True}" class="oe_highlight"/>
+                    <button name="action_rfq_send" states="sent" string="Re-Send by Email" type="object" context="{'send_rfq':True}"/>
+                    <button name="print_quotation" string="Print" type="object" states="draft" class="oe_highlight" groups="base.group_user"/>
+                    <button name="print_quotation" string="Print" type="object" states="sent" groups="base.group_user"/>
                     <button name="button_confirm" type="object" states="draft" string="Confirm Order" id="draft_confirm"/>
                     <button name="button_confirm" type="object" states="sent" string="Confirm Order" class="oe_highlight" id="bid_confirm"/>
                     <button name="button_approve" type="object" states='to approve' string="Approve Order" class="oe_highlight" groups="purchase.group_purchase_manager"/>
@@ -166,7 +166,7 @@
                     <button name="action_view_picking" string="Receive Products" class="oe_highlight" type="object" attrs="{'invisible': ['|', '|' , ('is_shipped', '=', True), ('state','not in', ('purchase','done')), ('picking_count', '=', 0)]}"/>
                     <button name="button_draft" states="cancel" string="Set to Draft" type="object" />
                     <button name="button_cancel" states="draft,to approve,sent,purchase" string="Cancel" type="object" />
-                    <button name="button_done" type="object" string="Lock" states="purchase"/>
+                    <button name="button_done" type="object" string="Done" states="purchase"/>
                     <button name="button_unlock" type="object" string="Unlock" states="done" groups="purchase.group_purchase_manager"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,sent,purchase" readonly="1"/>
                 </header>
@@ -181,7 +181,7 @@
                         </button>
                         <button type="object"  name="action_view_invoice"
                             class="oe_stat_button"
-                            icon="fa-pencil-square-o" attrs="{'invisible':[('state', 'in', ('draft','sent','to approve')),('invoice_ids','=',[])]}">
+                            icon="fa-pencil-square-o" invisible="1">
                             <field name="invoice_count" widget="statinfo" string="Vendor Bills"/>
                             <field name='invoice_ids' invisible="1"/>
                         </button> 
@@ -196,14 +196,14 @@
                     <group>
                         <group>
                             <field name="partner_id" context="{'search_default_supplier':1, 'default_supplier':1, 'default_customer':0}" domain="[('supplier','=',True)]"/>
-                            <field name="partner_ref"/>
+                            <field name="partner_ref" invisible="1"/>
                             <field name="currency_id" groups="base.group_multi_currency"/>
                             <field name="is_shipped" invisible="1"/>
                         </group>
                         <group>
                             <field name="date_order"/>
-                            <label for="date_planned"/>
-                            <div>
+                            <label for="date_planned" invisible="1"/>
+                            <div invisible="1">
                                 <field name="date_planned" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
                                 <button name="action_set_date_planned" type="object"
                                     states="draft,sent"
@@ -211,9 +211,9 @@
                                     help="This changes the scheduled date of all order lines to the given date"
                                     class="fa fa-calendar o_icon_button oe_edit_only"/>
                             </div>
-                            <field name="origin" attrs="{'invisible': [('origin','=',False)]}"/>
-                            <field name="invoice_status"/>
-                            <field name="payment_term_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}"/>
+                            <field name="origin" invisible="1"/>
+                            <field name="invoice_status" invisible="1"/>
+                            <field name="payment_term_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': ['|', ('invoice_status','=', 'invoiced'), ('state', '=', 'done')]}" invisible="1"/>
                             <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                         </group>
                     </group>
@@ -225,14 +225,14 @@
                                     <field name="state" invisible="1"/>
                                     <field name="sequence" widget="handle"/>
                                     <field name="product_id" attrs="{'readonly': [('state', 'in', ('purchase', 'to approve','done', 'cancel'))]}" context="{'partner_id':parent.partner_id, 'quantity':product_qty,'uom':product_uom, 'company_id': parent.company_id}"/>
-                                    <field name="name"/>
-                                    <field name="date_planned"/>
+                                    <field name="name" invisible="1"/>
+                                    <field name="date_planned" invisible="1"/>
                                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                     <field name="account_analytic_id" context="{'default_partner_id':parent.partner_id}" groups="purchase.group_analytic_accounting"/>
                                     <field name="analytic_tag_ids" groups="purchase.group_analytic_accounting" widget="many2many_tags"/>
                                     <field name="product_qty"/>
                                     <field name="qty_received" invisible="not context.get('show_purchase', False)"/>
-                                    <field name="qty_invoiced" invisible="not context.get('show_purchase', False)"/>
+                                    <field name="qty_invoiced" invisible="1"/>
                                     <field name="product_uom" groups="product.group_uom" attrs="{'readonly': [('state', 'in', ('purchase', 'done', 'cancel'))]}"/>
                                     <field name="price_unit"/>
                                     <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use','=','purchase')]" context="{'default_type_tax_use': 'purchase'}" invisible="1"/>
@@ -255,14 +255,14 @@
                                             </group>
                                             <group>
                                                 <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" invisible="1"/>
-                                                <field name="date_planned" widget="date"/>
+                                                <field name="date_planned" widget="date" invisible="1"/>
                                                 <field name="account_analytic_id" colspan="2" groups="purchase.group_analytic_accounting"/>
                                                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                             </group>
                                         </group>
-                                        <notebook>
-                                        <page string="Notes">
-                                            <field name="name"/>
+                                        <notebook invisible="1">
+                                        <page string="Notes" invisible="1">
+                                            <field name="name" invisible="1"/>
                                         </page><page string="Invoices and Incoming Shipments" invisible="1">
                                             <field name="invoice_lines"/>
                                             <field name="move_ids"/>
@@ -273,7 +273,7 @@
                             </field>
                             <group class="oe_subtotal_footer oe_right">
                                 <field name="amount_untaxed" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                <field name="amount_tax" widget="monetary" options="{'currency_field': 'currency_id'}" invisible="1"/>
                                 <div class="oe_subtotal_footer_separator oe_inline">
                                     <label for="amount_total"/>
                                 </div>
@@ -299,8 +299,8 @@
                     </notebook>
                 </sheet>
                 <div class="oe_chatter">
-                    <field name="message_follower_ids" widget="mail_followers"/>
-                    <field name="message_ids" widget="mail_thread"/>
+                    <field name="message_follower_ids" widget="mail_followers" invisible="1"/>
+                    <field name="message_ids" widget="mail_thread" invisible="1"/>
                 </div>
                 </form>
             </field>
@@ -382,13 +382,13 @@
                     <field name="date_order" />
                     <field name="partner_id"/>
                     <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
-                    <field name="date_planned" invisible="context.get('quotation_only', False)"/>
-                    <field name="origin"/>
-                    <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary"/>
+                    <field name="date_planned" invisible="1"/>
+                    <field name="origin" invisible="1"/>
+                    <field name="amount_untaxed" sum="Total Untaxed amount" string="Untaxed" widget="monetary" invisible="1"/>
                     <field name="amount_total" sum="Total amount" widget="monetary"/>
                     <field name="currency_id" invisible="1"/>
                     <field name="state"/>
-                    <field name="invoice_status" invisible="not context.get('show_purchase', False)"/>
+                    <field name="invoice_status" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -422,7 +422,7 @@
               </p>
             </field>
         </record>
-        <menuitem action="purchase_rfq" id="menu_purchase_rfq"
+        <menuitem action="purchase_rfq" id="menu_purchase_rfq" groups="base.group_no_one"
             parent="menu_procurement_management"
             sequence="0"/>
 
@@ -430,9 +430,9 @@
             <field name="name">Purchase Orders</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">purchase.order</field>
-            <field name="view_mode">tree,kanban,form,pivot,graph,calendar</field>
+            <field name="view_mode">tree,form</field>
             <field name="context">{'search_default_todo':1, 'show_purchase': True}</field>
-            <field name="domain">[('state','not in',('draft','sent','bid', 'confirmed'))]</field>
+            <field name="domain">[]</field>
             <field name="search_view_id" ref="view_purchase_order_filter"/>
             <field name="help" type="html">
               <p class="oe_view_nocontent_create">
