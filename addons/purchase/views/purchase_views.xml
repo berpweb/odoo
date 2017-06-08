@@ -202,8 +202,8 @@
                         </group>
                         <group>
                             <field name="date_order"/>
-                            <label for="date_planned" invisible="1"/>
-                            <div invisible="1">
+                            <label for="date_planned"/>
+                            <div>
                                 <field name="date_planned" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'sent'))]}"/>
                                 <button name="action_set_date_planned" type="object"
                                     states="draft,sent"
@@ -255,7 +255,7 @@
                                             </group>
                                             <group>
                                                 <field name="taxes_id" widget="many2many_tags" domain="[('type_tax_use', '=', 'purchase')]" invisible="1"/>
-                                                <field name="date_planned" widget="date" invisible="1"/>
+                                                <field name="date_planned" widget="date"/>
                                                 <field name="account_analytic_id" colspan="2" groups="purchase.group_analytic_accounting"/>
                                                 <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
                                             </group>
