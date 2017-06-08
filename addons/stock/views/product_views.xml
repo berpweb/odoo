@@ -124,13 +124,17 @@
             <field name="model">product.template</field>
             <field name="inherit_id" ref="product.product_template_form_view"/>
             <field name="arch" type="xml">
+                <field name="categ_id" position="after">
+                    <field name="route_ids" widget="many2many_checkboxes" attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}" string="Create PO?"/>
+                    <field name="route_from_categ_ids" widget="many2many_tags" readonly="1" attrs="{'invisible':[('route_from_categ_ids', '=', [])]}"/>
+                </field>
                 <page name="general_information" position="after">
                     <page string="Inventory" groups="base.group_no_one">
                         <group name="inventory">
-                            <group>
+                            <!--<group>
                                 <field name="route_ids" widget="many2many_checkboxes" attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}"/>
                                 <field name="route_from_categ_ids" widget="many2many_tags" readonly="1" attrs="{'invisible':[('route_from_categ_ids', '=', [])]}"/>
-                            </group>
+                            </group>-->
                             <group name="group_lots_and_weight">
                                 <label for="weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}"/>
                                 <div class="o_row" name="weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}">
