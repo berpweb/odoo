@@ -44,7 +44,8 @@
                             <group>
                                 <group name="group_general">
                                     <field name="type"/>
-                                    <field name="categ_id" string="Product Category"/>
+                                    <field name="categ_id" string="Product Category"
+                                           context="{'search_default_group_by_parent_id':1}"/>
                                 </group>
                                 <group name="group_standard_price">
                                     <field name="list_price" widget='monetary' options="{'currency_field': 'currency_id'}"/>
@@ -373,6 +374,9 @@
                 <search string="Product Categories">
                     <field name="name" string="Product Categories"/>
                     <field name="parent_id"/>
+                    <group expand="0" name="group_by" string="Group By">
+                       <filter string="Category" context="{'group_by': 'parent_id'}" name="group_by_parent_id"/>
+                   </group>
                 </search>
             </field>
         </record>
