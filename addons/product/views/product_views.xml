@@ -485,7 +485,7 @@
                                 <field name="min_qty" class="oe_inline"/>
                                 <field name="product_uom" class="oe_inline" groups="product.group_uom"/>
                             </div>
-                            <label for="price"/>
+                            <label for="price" string="Vendor Price"/>
                             <div>
                                 <field name="price" class="oe_inline"/><field name="currency_id" class="oe_inline" groups="base.group_multi_currency"/>
                             </div>
