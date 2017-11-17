@@ -110,18 +110,31 @@
                     </t>
                 </t>
             </div>
-
-            <!-- Subtotal -->
-            <t t-set='taxincluded' t-value='Math.abs(receipt.subtotal - receipt.total_with_tax) &lt;= 0.000001' />
-            <t t-if='!taxincluded'>
-                <line><right>--------</right></line>
-                <line><left>Subtotal</left><right> <value><t t-esc="receipt.subtotal" /></value></right></line>
-                <t t-foreach='receipt.tax_details' t-as='tax'>
-                    <line>
-                        <left>Service Tax 15%</left>
-                        <right><value><t t-esc='tax.amount' /></value></right>
-                    </line>
-                </t>
+            
+            <t t-set='service_charge_removed' t-value='0' />
+            
+            <t t-foreach='receipt.orderlines' t-as='line'>
+            <t t-debug=""></t>
+            	<t t-if='line.rm_service_charge_product'>
+            		<t t-set='service_charge_removed' t-value='1' />
+            	</t>
+            </t>
+            
+            <t t-if='!service_charge_removed'>
+			<t t-debug=""></t>
+	            <!-- Subtotal -->
+	            <t t-set='taxincluded' t-value='Math.abs(receipt.subtotal - receipt.total_with_tax) &lt;= 0.000001' />
+	            <t t-if='!taxincluded'>
+	                <line><right>--------</right></line>
+	                <line><left>Subtotal</left><right> <value><t t-esc="receipt.subtotal" /></value></right></line>
+	                <t t-foreach='receipt.tax_details' t-as='tax'>
+	                    <line>
+	                        <left>Service Charge 15%</left>
+	                        <right><value><t t-esc='tax.amount' /></value></right>
+	                    </line>
+	                </t>
+	            </t>
+	            
             </t>
 
             <!-- Total -->
@@ -144,7 +157,7 @@
             <t t-if='taxincluded'>
                 <t t-foreach='receipt.tax_details' t-as='tax'>
                     <line>
-                        <left>Service Tax 15%</left>
+                        <left>Service Charge 15%</left>
                         <right><value><t t-esc='tax.amount' /></value></right>
                     </line>
                 </t>

@@ -777,7 +777,7 @@
                 <line><left>Subtotal</left><right><value><t t-esc="receipt.subtotal" /></value></right></line>
                 <t t-foreach='receipt.tax_details' t-as='tax'>
                     <line>
-                        <left>Service Tax 15%</left>
+                        <left>Service Charge 15%</left>
                         <right><value><t t-esc='tax.amount' /></value></right>
                     </line>
                 </t>
@@ -819,7 +819,7 @@
             <t t-if='taxincluded'>
                 <t t-foreach='receipt.tax_details' t-as='tax'>
                     <line>
-                        <left>Service Tax 15%</left>
+                        <left>Service Charge 15%</left>
                         <right><value><t t-esc='tax.amount' /></value></right>
                     </line>
                 </t>
@@ -1274,7 +1274,7 @@
                             <div class="line">
                                 <div class='entry total'>
                                     <span class="label">Total: </span> <span class="value">0.00 €</span>
-                                    <div class='subentry'>Taxes: <span class="value">0.00€</span></div>
+                                    <div class='subentry'>Service Charge: <span class="value">0.00€</span></div>
                                 </div>
                             </div>
                         </div>
@@ -1438,23 +1438,34 @@
                 </tr>
             </table>
             <br />
+            
+            <t t-set='service_charge_removed' t-value='0' />
+            
+            <t t-foreach='receipt.orderlines' t-as='line'>
+            	<t t-if='line.rm_service_charge_product'>
+            		<t t-set='service_charge_removed' t-value='1' />
+            	</t>
+            </t>
+            
             <table class='receipt-total'>
-                <tr>
-                    <td>Subtotal:</td>
-                    <td class="pos-right-align">
-                        <t t-esc="widget.format_currency(order.get_total_without_tax())"/>
-                    </td>
-                </tr>
-                <t t-foreach="order.get_tax_details()" t-as="taxdetail">
-                    <tr>
-                        <td>Service Tax 15%</td>
-                        <td class="pos-right-align">
-                            <t t-esc="widget.format_currency(taxdetail.amount)" />
-                        </td>
-                    </tr>
+            	<t t-if='!service_charge_removed'>
+	                <tr>
+	                    <td>Subtotal:</td>
+	                    <td class="pos-right-align">
+	                        <t t-esc="widget.format_currency(order.get_total_without_tax())"/>
+	                    </td>
+	                </tr>
+	                <t t-foreach="order.get_tax_details()" t-as="taxdetail">
+	                    <tr>
+	                        <td>Service Charge 15%</td>
+	                        <td class="pos-right-align">
+	                            <t t-esc="widget.format_currency(taxdetail.amount)" />
+	                        </td>
+	                    </tr>
+	                </t>
                 </t>
                 <tr>
-                    <td>Discount:</td>
+                    <td>Discountttttt:</td>
                     <td class="pos-right-align">
                         <t t-esc="widget.format_currency(order.get_total_discount())"/>
                     </td>

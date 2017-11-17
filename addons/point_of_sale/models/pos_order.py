@@ -938,6 +938,11 @@ class ReportSaleDetails(models.AbstractModel):
         total = 0.0
         products_sold = {}
         taxes = {}
+        service_charge_removed_orders = 0
+        service_charge_orders = 0
+        service_charge_to_be_paid = 0.0
+        total_service_charge_removed = 0.0
+        total_service_charge_paid = 0.0
         for order in orders:
             if user_currency != order.pricelist_id.currency_id:
                 total += order.pricelist_id.currency_id.compute(order.amount_total, user_currency)
@@ -955,6 +960,16 @@ class ReportSaleDetails(models.AbstractModel):
                     for tax in line_taxes['taxes']:
                         taxes.setdefault(tax['id'], {'name': tax['name'], 'total':0.0})
                         taxes[tax['id']]['total'] += tax['amount']
+                        
+            service_charge_removed_lines = order.lines.filtered(lambda line: line.product_id.rm_service_charge_product == True)
+            if service_charge_removed_lines:
+                service_charge_removed_orders += 1
+                total_service_charge_removed -= sum(service_charge_removed_lines.mapped('price_unit'))
+            else:
+                service_charge_orders +=1 
+        for tax in taxes.values():
+            service_charge_to_be_paid += tax['total']
+        total_service_charge_paid = service_charge_to_be_paid - total_service_charge_removed
 
         st_line_ids = self.env["account.bank.statement.line"].search([('pos_statement_id', 'in', orders.ids)]).ids
         if st_line_ids:
@@ -974,6 +989,10 @@ class ReportSaleDetails(models.AbstractModel):
 
         return {
             'total_paid': user_currency.round(total),
+            'service_charge_removed_orders': service_charge_removed_orders,
+            'service_charge_orders': service_charge_orders,
+            'total_service_charge_removed': total_service_charge_removed,
+            'total_service_charge_paid': total_service_charge_paid,
             'payments': payments,
             'company_name': self.env.user.company_id.name,
             'taxes': taxes.values(),

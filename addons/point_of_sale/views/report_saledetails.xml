@@ -57,7 +57,7 @@
 
             <br/>
 
-            <h3>Taxes</h3>
+            <!-- <h3>Taxes</h3>
             <table  class="table table-condensed">
                 <thead><tr>
                     <th>Name</th>
@@ -71,9 +71,17 @@
                 </tbody>
             </table>
 
-            <br/>
+            <br/> -->
             <br/>
 
+            <strong>Service charge removed orders: <t t-esc='service_charge_removed_orders'/></strong>
+            <br/>
+            <strong>Service charge removed: <t t-esc='total_service_charge_removed'/>$</strong>
+            <br/>
+            <strong>Service charge orders: <t t-esc='service_charge_orders'/></strong>
+            <br/>
+            <strong>Service charge paid: <t t-esc='total_service_charge_paid'/>$</strong>
+            <br/>
             <strong>Total: <t t-esc='total_paid'/></strong>
 
         </div>

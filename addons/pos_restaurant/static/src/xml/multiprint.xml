@@ -37,7 +37,7 @@
                         </line>
                         <t t-if="change.note">
                             <line>
-                                <left>NOTE</left>
+                                <left>NOTE12</left>
                                 <right>...</right>
                             </line>
                             <div><span font='b' bold='off' line-ratio='0.4' indent='1' width='30'>--- <t t-esc="change.note" /></span></div>
@@ -53,10 +53,7 @@
                 <br />
                 <br />
                 <t t-foreach="changes.new" t-as="change">
-                    <line>
-                        <left><value><t t-esc="change.qty" /></value></left>
-                        <right><t t-esc="change.name" /><t t-esc="change.variant_name" /></right>
-                    </line>
+					<div><t t-esc="change.name" />-<t t-esc="change.variant_name" />-<value><t t-esc="change.qty" /></value></div>
                     <t t-if="change.note">
                         <line>
                             <left>NOTE</left>

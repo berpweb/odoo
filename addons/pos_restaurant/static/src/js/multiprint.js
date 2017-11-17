@@ -197,7 +197,7 @@ models.Order = models.Order.extend({
             }
 
             if (typeof resume[line_hash] === 'undefined') {
-                resume[line_hash] = { qty: qty, note: note, product_id: product_id };
+                resume[line_hash] = { qty: qty, note: note, product_id: product_id, variant_name: variant_name };
             } else {
                 resume[line_hash].qty += qty;
             }
