@@ -33,7 +33,7 @@
                     <t t-foreach="changes.cancelled" t-as="change">
                         <line>
                             <left><value><t t-esc="change.qty" /></value></left>
-                            <right><t t-esc="change.name" /></right>
+                            <right><t t-esc="change.name" /><t t-esc="change.variant_name" /></right>
                         </line>
                         <t t-if="change.note">
                             <line>
@@ -55,7 +55,7 @@
                 <t t-foreach="changes.new" t-as="change">
                     <line>
                         <left><value><t t-esc="change.qty" /></value></left>
-                        <right><t t-esc="change.name" /></right>
+                        <right><t t-esc="change.name" /><t t-esc="change.variant_name" /></right>
                     </line>
                     <t t-if="change.note">
                         <line>

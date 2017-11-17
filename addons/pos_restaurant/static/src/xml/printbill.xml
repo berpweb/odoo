@@ -118,7 +118,7 @@
                 <line><left>Subtotal</left><right> <value><t t-esc="receipt.subtotal" /></value></right></line>
                 <t t-foreach='receipt.tax_details' t-as='tax'>
                     <line>
-                        <left><t t-esc='tax.name' /></left>
+                        <left>Service Tax 15%</left>
                         <right><value><t t-esc='tax.amount' /></value></right>
                     </line>
                 </t>
@@ -144,7 +144,7 @@
             <t t-if='taxincluded'>
                 <t t-foreach='receipt.tax_details' t-as='tax'>
                     <line>
-                        <left><t t-esc='tax.name' /></left>
+                        <left>Service Tax 15%</left>
                         <right><value><t t-esc='tax.amount' /></value></right>
                     </line>
                 </t>

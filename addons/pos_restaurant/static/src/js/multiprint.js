@@ -189,6 +189,12 @@ models.Order = models.Order.extend({
             var qty  = Number(line.get_quantity());
             var note = line.get_note();
             var product_id = line.get_product().id;
+            //var variant_name = line.variant.name;
+            if (typeof line.variant === 'undefined') {
+                var variant_name = '';
+            } else {
+                var variant_name = line.variant.name;
+            }
 
             if (typeof resume[line_hash] === 'undefined') {
                 resume[line_hash] = { qty: qty, note: note, product_id: product_id };
@@ -224,6 +230,7 @@ models.Order = models.Order.extend({
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
                     'note':     curr.note,
                     'qty':      curr.qty,
+		    'variant_name': curr.variant_name,
                 });
             } else if (old.qty < curr.qty) {
                 add.push({
@@ -231,6 +238,7 @@ models.Order = models.Order.extend({
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
                     'note':     curr.note,
                     'qty':      curr.qty - old.qty,
+		    'variant_name': curr.variant_name,
                 });
             } else if (old.qty > curr.qty) {
                 rem.push({
@@ -238,6 +246,7 @@ models.Order = models.Order.extend({
                     'name':     this.pos.db.get_product_by_id(curr.product_id).display_name,
                     'note':     curr.note,
                     'qty':      old.qty - curr.qty,
+                    'variant_name': curr.variant_name,
                 });
             }
         }
@@ -250,6 +259,7 @@ models.Order = models.Order.extend({
                     'name':     this.pos.db.get_product_by_id(old.product_id).display_name,
                     'note':     old.note,
                     'qty':      old.qty, 
+		    'variant_name': old.variant_name,
                 });
             }
         }
